@@ -53,6 +53,7 @@ class Game extends React.Component {
       }],
       stepNumber: 0,
       xIsNext: true,
+      selectedButton: null,
     };
   }
 
@@ -78,6 +79,7 @@ class Game extends React.Component {
     this.setState({
       stepNumber: step,
       xIsNext: (step % 2) === 0,
+      selectedButton: step
     });
   }
 
@@ -108,7 +110,7 @@ class Game extends React.Component {
         'Go to game start';
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(move)} style={this.state.selectedButton === move ? { fontWeight: 'bold' } : { fontWeight: 'normal' }}>{desc}</button>
         </li>
       )
     })
