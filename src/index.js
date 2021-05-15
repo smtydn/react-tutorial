@@ -52,6 +52,7 @@ class Game extends React.Component {
       xIsNext: true,
       selectedButton: null,
       isAscending: true,
+      isDraw: false,
     };
   }
 
@@ -71,6 +72,7 @@ class Game extends React.Component {
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
+      isDraw: !squares.includes(null)
     });
   }
 
@@ -131,7 +133,11 @@ class Game extends React.Component {
     if (gameStatus.winner) {
       status = 'Winner: ' + gameStatus.winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      if (this.state.isDraw) {
+        status = 'Draw.'
+      } else {
+        status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      }
     };
 
     return (
